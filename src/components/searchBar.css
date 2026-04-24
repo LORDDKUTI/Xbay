@@ -1,0 +1,11 @@
+/* smooth height/scale animation for SearchBar container */
+.searchbar-root {
+  transition: padding 180ms ease, transform 180ms ease;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+.searchbar-root.compact {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  transform: translateZ(0) scale(0.995);
+}
