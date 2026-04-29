@@ -61,7 +61,6 @@
 
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import './searchbar.css' // small extra CSS for smooth transform
 
 const SearchBar = ({ initial = '' }) => {
   const [query, setQuery] = useState(initial)
@@ -83,11 +82,11 @@ const SearchBar = ({ initial = '' }) => {
 
   return (
     <header
-      className={`sticky top-0 z-40 bg-white transition-shadow duration-200 ${compact ? 'shadow-md' : 'shadow-none'}`}
+      className={`sticky top-0 z-40 bg-white transition-shadow duration-200 ${compact ? 'shadow-md py-1' : 'shadow-none py-3'}`}
       aria-label="Top search"
     >
-      <div className={`mx-auto max-w-5xl px-4 searchbar-root ${compact ? 'compact' : 'expanded'}`}>
-        <form onSubmit={onSubmit} className="flex items-center gap-3">
+      <div className={`mx-auto max-w-5xl px-4  ${compact ? 'compact' : 'expanded'}`}>
+        <form onSubmit={onSubmit} className="flex items-center w-full gap-3">
           <div className={`flex w-full items-center rounded-full bg-gray-100`}>
             <input
               value={query}
