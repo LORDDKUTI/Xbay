@@ -28,7 +28,7 @@ const Nav = () => {
           setUser(res?.data || null);
         }
       } catch (err) {
-        if (mounted) {
+        if (mounted && err?.response?.status !== 400) {
           setUser(null);
         }
       } finally {
@@ -87,11 +87,16 @@ const Nav = () => {
           <Link to="/cart" className={linkClass("/cart")}>
             Cart
           </Link>
-          {user ? (
-            <Link to="/manager/products/list" className={linkClass("/manager/products/list")}>
-              Manager
-            </Link>
-          ) : null}
+          {user?.role === "manager" && (
+            <>
+              <Link to="/manager" className={linkClass("/manager")}>
+                Add Product
+              </Link>
+              <Link to="/manager/products/list" className={linkClass("/manager/products/list")}>
+                Manage Products
+              </Link>
+            </>
+          )}
         </nav>
 
         <div className="flex items-center gap-3">

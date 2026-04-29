@@ -19,8 +19,31 @@ import OrderSuccess from './pages/auth/OrderSuccess'
 import PaymantCallback from './pages/auth/PaymantCallback'
 import Orders from './pages/Orders'
 import OrderItemsDetail from './pages/OrderItemsDetail'
+import ProtctedRouteComponent from './components/ProtctedRouteComponent'
+import { useState } from 'react'
+import { useEffect } from 'react'
+import api from './api/api'
 
 function App() {
+
+  const [user, setUser] = useState(null)
+  useEffect(()=>{
+    const token = localStorage.getItem("access")
+    if (!token) return
+
+    const loadUser = async () => {
+      try{
+        const res= await api.get("/auth/user/")
+        setUser(res.data)
+      } catch {
+        setUser(null)
+      }
+    }
+    loadUser()
+  }, [])
+
+
+
   const router= createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<RouteLayout/> }  >
@@ -41,10 +64,26 @@ function App() {
         <Route path='cart' element={ <Cart/> } />
 
 
-        <Route path='create' element={<AddProduct/> }  />
-        <Route path='manager' element={<ManagerProductAdd/> } />
-        <Route path='manager/products/success' element={<ManagerProductSuccess/> } />
-        <Route path='manager/products/list' element={<ManagerProductsList/> } />
+        <Route path='manager' element={ 
+          <ProtctedRouteComponent user={user} role="manager">
+             <ManagerProductAdd/> 
+          </ProtctedRouteComponent> }
+        />
+        <Route path='create' element={ 
+          <ProtctedRouteComponent user={user} role="manager">
+             <AddProduct/> 
+          </ProtctedRouteComponent> }
+        />
+        <Route path='manager/products/list' element={ 
+          <ProtctedRouteComponent user={user} role="manager">
+             <ManagerProductsList/> 
+          </ProtctedRouteComponent> }
+        />
+        <Route path='manager/products/success' element={ 
+          <ProtctedRouteComponent user={user} role="manager">
+             <ManagerProductSuccess/> 
+          </ProtctedRouteComponent> }
+        />
       </Route>
     )
   )

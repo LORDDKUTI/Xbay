@@ -2,15 +2,13 @@ import React from 'react'
 import Nav from '../components/Nav'
 import { Outlet } from 'react-router-dom'
 
-const RouteLayout = () => {
+const RouteLayout = ({ user }) => {
   return (
     <div className='min-h-screen bg-white text-black'>
-      <div>
-        <Nav />
-      </div>
-      <main>
+      
+        <Nav user={user} />
         <Outlet/>
-      </main>
+      
     </div>
   )
 }
