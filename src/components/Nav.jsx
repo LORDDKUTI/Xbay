@@ -77,7 +77,7 @@ const Nav = () => {
           YourStore
         </button>
 
-        <nav className="hidden items-center gap-6 text-sm md:flex">
+        <nav className=" items-center gap-6 text-sm flex">
           <Link to="/" className={linkClass("/")}>
             Home
           </Link>
@@ -106,11 +106,11 @@ const Nav = () => {
             <>
               <button
                 onClick={() => navigate("/cart")}
-                className="hidden rounded-md border border-gray-300 px-3 py-1.5 text-sm font-medium transition hover:border-black hover:text-black md:block"
+                className=" rounded-md border border-gray-300 px-3 py-1.5 text-sm font-medium transition hover:border-black hover:text-black md:block"
               >
                 Cart
               </button>
-              <div className="hidden text-right md:block">
+              <div className=" text-right md:block">
                 <p className="text-xs uppercase tracking-[0.24em] text-gray-400">
                   Signed in
                 </p>
@@ -127,7 +127,7 @@ const Nav = () => {
             <>
               <button
                 onClick={() => navigate("/signup")}
-                className="hidden rounded-md border border-gray-300 px-3 py-1.5 text-sm font-medium transition hover:border-black hover:text-black md:block"
+                className=" rounded-md border border-gray-300 px-3 py-1.5 text-sm font-medium transition hover:border-black hover:text-black md:block"
               >
                 Create account
               </button>
